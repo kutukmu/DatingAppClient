@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    
+    <div class="container">
+      <a class="navbar-brand" href="#">Carousel</a>
+      
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul *ngIf="isLoggedIn" class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Matches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Lists</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ">Messages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " (click)="logout()">Logout</a>
+          </li>
+        </ul>
+        <div *ngIf="isLoggedIn" ngbDropdown class="dropdown">
+            <a ngbDropdownToggle class="btn btn-secondary" type="button" id="dropdownMenuButton1" aria-expanded="false">
+          Welcome
+            </a>
+            <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
+              <li><a ngbDropdownItem href="#">Edit</a></li>
+              <li><a (click)="logout()" ngbDropdownItem href="#">Logout</a></li>
+            </ul>
+          </div>
+        <form *ngIf="!isLoggedIn" #loginForm="ngForm" class="d-flex ml-auto" (ngSubmit)="login()">
+          <input
+            name="username"
+            [(ngModel)]="model.username"
+           class="form-control me-2" type="text" placeholder="Username" >
+          <input 
+          name="password"
+          [(ngModel)]="model.password"
+          class="form-control ml-2" type="password" placeholder="Password" >
+          <button class="btn btn-outline-success ml-2" type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  </nav>
